@@ -53,7 +53,7 @@
                     <td class="col-act">
                         <a href="{{ route('transaksi.show', $transaksi->id) }}" class="btn btn-sm btn-outline">Detail</a>
                     </td>
-                </tr>
+                </tr> 
             @empty
                 <tr>
                     <td colspan="5" class="empty-cell">Belum ada transaksi.</td>
