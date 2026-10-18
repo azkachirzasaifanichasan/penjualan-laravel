@@ -3,9 +3,9 @@
 @section('title', 'Masuk')
 
 @section('content')
-<header class="auth-head">
-    <h1 class="page-title">Masuk</h1>
-    <p class="page-sub">Gunakan akun karyawan atau admin toko</p>
+<header class="mb-5">
+    <h1 class="page-title text-2xl">Masuk</h1>
+    <p class="page-sub mt-0.5">Gunakan akun karyawan atau admin toko</p>
 </header>
 
 <form action="{{ route('login') }}" method="POST">
@@ -36,13 +36,13 @@
         </div>
     </div>
 
-    <div class="form-actions auth-actions">
+    <div class="form-actions flex-col items-stretch gap-3">
         <button type="submit" class="btn btn-primary btn-block" data-loading-label="Memproses…">
             <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Masuk
         </button>
-        <p class="hint-text auth-switch">
+        <p class="hint-text text-center">
             Belum punya akun?
-            <a href="{{ route('register') }}">Daftar di sini</a>
+            <a href="{{ route('register') }}" class="font-semibold text-accent-dark hover:underline">Daftar di sini</a>
         </p>
     </div>
 </form>

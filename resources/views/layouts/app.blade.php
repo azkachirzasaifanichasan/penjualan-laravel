@@ -9,21 +9,21 @@
     @yield('styles')
 </head>
 <body>
-    <a class="skip-link" href="#konten">Lewati ke konten</a>
+    <a class="absolute top-0 -left-[9999px] z-[60] bg-ink px-4 py-2 text-sm text-paper focus-visible:left-0" href="#konten">Lewati ke konten</a>
 
-    <div class="app-shell">
+    <div class="flex min-h-[100dvh]">
         <div id="backdrop" class="backdrop" aria-hidden="true"></div>
 
         <aside id="sidebar" class="sidebar no-print" aria-label="Navigasi utama">
-            <div class="sidebar-brand">
-                <span class="brand-tile"><i class="bi bi-shop" aria-hidden="true"></i></span>
+            <div class="mb-4 flex items-center gap-2 border-b border-sidebar-2 px-2 pt-1 pb-4">
+                <span class="grid size-9 shrink-0 place-items-center bg-accent text-base text-accent-ink"><i class="bi bi-shop" aria-hidden="true"></i></span>
                 <span>
-                    <span class="brand-name">Kasir Simple</span><br>
-                    <span class="brand-sub">Toko RPL Jaya</span>
+                    <span class="font-display text-base leading-[1.2] font-semibold text-accent-ink">Kasir Simple</span><br>
+                    <span class="text-xs leading-[1.3] text-sidebar-label">Toko RPL Jaya</span>
                 </span>
             </div>
 
-            <p class="sidebar-label">Menu</p>
+            <p class="mb-2 px-2 text-xs font-semibold tracking-[0.12em] text-sidebar-label uppercase">Menu</p>
             <nav class="grid gap-1">
                 <a class="navlink {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                    href="{{ route('dashboard') }}"
@@ -49,8 +49,8 @@
         </aside>
 
         <div class="flex min-w-0 flex-1 flex-col">
-            <header class="topbar no-print">
-                <button type="button" class="icon-btn" data-drawer-toggle
+            <header class="no-print sticky top-0 z-30 flex items-center gap-3 border-b border-rule bg-surface px-4 py-3 md:hidden">
+                <button type="button" class="inline-flex size-9 items-center justify-center border border-rule text-ink-2 transition-colors hover:bg-paper-2 hover:text-ink" data-drawer-toggle
                         aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="sidebar">
                     <i class="bi bi-list" aria-hidden="true"></i>
                 </button>
@@ -59,7 +59,7 @@
 
             <main id="konten" class="content">
                 @if (session('success'))
-                    <div class="alert alert-success" role="status" data-alert>
+                    <div class="alert border-accent/30 bg-accent-soft text-accent-dark" role="status" data-alert>
                         <i class="bi bi-check-circle" aria-hidden="true"></i>
                         <div class="alert-body">{{ session('success') }}</div>
                         <button type="button" class="alert-close" data-dismiss aria-label="Tutup pesan">
@@ -68,7 +68,7 @@
                     </div>
                 @endif
                 @if (session('error'))
-                    <div class="alert alert-danger" role="alert" data-alert>
+                    <div class="alert border-danger/30 bg-danger-soft text-danger-ink" role="alert" data-alert>
                         <i class="bi bi-exclamation-octagon" aria-hidden="true"></i>
                         <div class="alert-body">{{ session('error') }}</div>
                         <button type="button" class="alert-close" data-dismiss aria-label="Tutup pesan">
@@ -82,13 +82,13 @@
         </div>
     </div>
 
-    <dialog id="confirmDialog" class="confirm-dialog" aria-labelledby="confirmTitle">
-        <form method="dialog" class="confirm-card">
-            <h2 id="confirmTitle" class="confirm-title" data-confirm-title-el>Konfirmasi</h2>
-            <p class="confirm-body" data-confirm-body-el></p>
-            <div class="confirm-actions">
+    <dialog id="confirmDialog" class="fixed inset-0 m-auto h-fit max-h-[min(80vh,40rem)] w-[min(92vw,24rem)] border-0 bg-transparent p-0 backdrop:bg-ink/45" aria-labelledby="confirmTitle">
+        <form method="dialog" class="border border-rule bg-surface p-5 text-ink">
+            <h2 id="confirmTitle" class="mb-2 text-base font-semibold" data-confirm-title-el>Konfirmasi</h2>
+            <p class="mb-5 text-sm text-muted" data-confirm-body-el></p>
+            <div class="flex justify-end gap-2">
                 <button value="cancel" class="btn btn-outline" formnovalidate>Batal</button>
-                <button value="confirm" class="btn btn-danger-solid" data-confirm-action-el>Hapus</button>
+                <button value="confirm" class="btn bg-danger text-on-danger hover:bg-danger-dark" data-confirm-action-el>Hapus</button>
             </div>
         </form>
     </dialog>

@@ -10,9 +10,9 @@
     </div>
 </header>
 
-<div class="pos-grid">
-    <div class="pos-stack">
-        <section class="pos-section" aria-labelledby="headTransaksi">
+<div class="grid grid-cols-1 items-start gap-6 min-[68.75rem]:grid-cols-[minmax(0,1fr)_21rem]">
+    <div class="grid min-w-0 gap-6">
+        <section class="pt-0" aria-labelledby="headTransaksi">
             <div class="section-head">
                 <h2 class="section-title" id="headTransaksi">Header Transaksi</h2>
             </div>
@@ -28,7 +28,7 @@
             </div>
         </section>
 
-        <section class="pos-section" aria-labelledby="tambahItem">
+        <section class="border-t border-rule pt-5" aria-labelledby="tambahItem">
             <div class="section-head">
                 <h2 class="section-title" id="tambahItem">Tambah Item</h2>
             </div>
@@ -62,14 +62,14 @@
                 <button type="button" id="btnTambah" class="btn btn-outline btn-block">
                     <i class="bi bi-plus-lg" aria-hidden="true"></i> Tambah ke Keranjang
                 </button>
-                <p id="itemError" class="error-text js-error" role="alert"></p>
+                <p id="itemError" class="error-text min-h-[1lh]" role="alert"></p>
             </div>
         </section>
 
-        <section class="pos-section" aria-labelledby="keranjangBelanja">
+        <section class="border-t border-rule pt-5" aria-labelledby="keranjangBelanja">
             <div class="section-head">
                 <h2 class="section-title" id="keranjangBelanja">Keranjang</h2>
-                <span id="cartCount" class="badge badge-accent">0 item</span>
+                <span id="cartCount" class="badge bg-accent-soft text-accent-dark">0 item</span>
             </div>
             <div class="table-wrap">
                 <table class="table" id="cartTable">
@@ -92,37 +92,37 @@
         @csrf
         <input type="hidden" name="items" id="itemsJson" value="{{ old('items') ? json_encode(old('items')) : '[]' }}">
 
-        <section class="pos-summary" aria-labelledby="ringkasanBayar">
+        <section class="border-t border-rule pt-5 min-[68.75rem]:sticky min-[68.75rem]:top-4 min-[68.75rem]:border-t-0 min-[68.75rem]:border-l min-[68.75rem]:pt-0 min-[68.75rem]:pl-6" aria-labelledby="ringkasanBayar">
             <div class="section-head">
                 <h2 class="section-title" id="ringkasanBayar">Pembayaran</h2>
             </div>
 
-            <p class="summary-total-label">Total Belanja</p>
-            <p class="summary-total" id="cartTotal" aria-live="polite">Rp 0</p>
+            <p class="text-[0.8125rem] font-medium text-muted">Total Belanja</p>
+            <p class="mt-1 font-display text-[2rem] leading-[1.1] font-semibold tracking-[-0.02em] tabular-nums break-words" id="cartTotal" aria-live="polite">Rp 0</p>
 
-            <div class="hr" role="presentation"></div>
+            <div class="my-4 border-t border-rule" role="presentation"></div>
 
             <div>
                 <label for="bayarInput" class="label">Uang Bayar</label>
-                <div class="input-group">
-                    <span class="input-addon">Rp</span>
+                <div class="group flex">
+                    <span class="inline-flex items-center border border-e-0 border-rule bg-paper-2 px-4 text-sm whitespace-nowrap text-muted group-focus-within:border-focus">Rp</span>
                     <input type="number" id="bayarInput" class="input" min="0" inputmode="numeric" placeholder="0">
                 </div>
                 <p class="hint-text">Opsional — hanya untuk menghitung kembalian, tidak ikut tersimpan.</p>
             </div>
 
-            <div class="summary-row">
+            <div class="flex items-center justify-between gap-3 py-2 text-sm">
                 <span class="label mb-0">Kembalian</span>
-                <span id="kembalianDisplay" class="kembalian-ok" aria-live="polite">—</span>
+                <span id="kembalianDisplay" class="font-semibold text-accent-dark tabular-nums" aria-live="polite">—</span>
             </div>
 
-            <p id="submitError" class="error-text js-error" role="alert"></p>
+            <p id="submitError" class="error-text min-h-[1lh]" role="alert"></p>
             @error('items')
                 <p class="error-text">{{ $message }}</p>
             @enderror
 
             <div class="mt-4 grid gap-2">
-                <button type="submit" id="btnSimpan" class="btn btn-primary btn-lg btn-block"
+                <button type="submit" id="btnSimpan" class="btn btn-primary btn-block min-h-[3.25rem] px-6 py-3 text-base"
                         data-guard-btn data-loading-label="Menyimpan…" disabled>
                     <i class="bi bi-save" aria-hidden="true"></i> Simpan Transaksi
                 </button>
@@ -139,6 +139,9 @@
     const esc = (value) => String(value).replace(/[&<>"']/g, (c) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;',
     }[c]));
+
+    const KEMBALIAN_OK = 'font-semibold text-accent-dark tabular-nums';
+    const KEMBALIAN_KURANG = 'font-semibold text-danger tabular-nums';
 
     const barangSelect = document.getElementById('barangSelect');
     const hargaDisplay = document.getElementById('hargaDisplay');
@@ -206,16 +209,16 @@
         const raw = bayarInput.value;
         if (raw === '' || raw === null) {
             kembalianDisplay.textContent = '—';
-            kembalianDisplay.className = 'kembalian-ok';
+            kembalianDisplay.className = KEMBALIAN_OK;
             return;
         }
         const diff = Number(raw) - cartTotal();
         if (diff >= 0) {
             kembalianDisplay.textContent = formatRupiah(diff);
-            kembalianDisplay.className = 'kembalian-ok';
+            kembalianDisplay.className = KEMBALIAN_OK;
         } else {
             kembalianDisplay.textContent = 'Kurang ' + formatRupiah(Math.abs(diff));
-            kembalianDisplay.className = 'kembalian-kurang';
+            kembalianDisplay.className = KEMBALIAN_KURANG;
         }
     }
 
@@ -231,13 +234,13 @@
                     <td>${esc(item.nama)}</td>
                     <td class="col-num">${formatRupiah(item.harga)}</td>
                     <td>
-                        <div class="qty">
-                            <button type="button" class="qty-btn" data-action="dec" data-index="${index}"
+                        <div class="inline-flex items-center gap-1">
+                            <button type="button" class="grid size-7 cursor-pointer place-items-center border border-rule text-sm text-ink-2 transition-colors enabled:hover:bg-paper-2 disabled:cursor-not-allowed disabled:opacity-40" data-action="dec" data-index="${index}"
                                     ${item.jumlah <= 1 ? 'disabled' : ''} aria-label="Kurangi jumlah ${esc(item.nama)}">
                                 <i class="bi bi-dash" aria-hidden="true"></i>
                             </button>
-                            <span class="qty-val">${item.jumlah}</span>
-                            <button type="button" class="qty-btn" data-action="inc" data-index="${index}"
+                            <span class="min-w-9 text-center font-semibold tabular-nums">${item.jumlah}</span>
+                            <button type="button" class="grid size-7 cursor-pointer place-items-center border border-rule text-sm text-ink-2 transition-colors enabled:hover:bg-paper-2 disabled:cursor-not-allowed disabled:opacity-40" data-action="inc" data-index="${index}"
                                     ${item.jumlah >= item.stok ? 'disabled' : ''} aria-label="Tambah jumlah ${esc(item.nama)}">
                                 <i class="bi bi-plus" aria-hidden="true"></i>
                             </button>
@@ -245,7 +248,7 @@
                     </td>
                     <td class="col-num">${formatRupiah(item.harga * item.jumlah)}</td>
                     <td class="col-act">
-                        <button type="button" class="icon-btn text-danger" data-action="remove" data-index="${index}"
+                        <button type="button" class="inline-flex size-9 items-center justify-center border border-rule text-danger transition-colors hover:bg-paper-2" data-action="remove" data-index="${index}"
                                 aria-label="Hapus ${esc(item.nama)} dari keranjang">
                             <i class="bi bi-trash" aria-hidden="true"></i>
                         </button>

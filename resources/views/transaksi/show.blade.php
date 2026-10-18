@@ -16,13 +16,13 @@
     </div>
 </header>
 
-<div class="receipt">
-    <p class="receipt-store">Toko RPL Jaya</p>
-    <p class="receipt-sub">Struk Penjualan</p>
+<div class="mx-auto max-w-[23rem] border border-rule bg-surface p-6 font-mono text-[0.8125rem] leading-[1.6] text-ink-2 print:max-w-full print:border-0 print:p-0">
+    <p class="text-center text-base font-bold tracking-[0.08em] text-ink uppercase">Toko RPL Jaya</p>
+    <p class="mt-1 text-center text-xs text-muted">Struk Penjualan</p>
 
     <div class="receipt-rule" role="presentation"></div>
 
-    <div class="receipt-meta">
+    <div class="grid gap-1">
         <div class="flex justify-between gap-3">
             <span>No. Transaksi</span>
             <span>{{ $transaksi->nomor_transaksi }}</span>
@@ -35,21 +35,21 @@
 
     <div class="receipt-rule" role="presentation"></div>
 
-    <table class="receipt-table">
+    <table class="w-full border-collapse">
         <thead>
             <tr>
-                <th scope="col">Item</th>
-                <th scope="col" class="r">Subtotal</th>
+                <th scope="col" class="pb-1 text-left text-xs font-semibold tracking-[0.08em] text-muted uppercase">Item</th>
+                <th scope="col" class="pb-1 text-right text-xs font-semibold tracking-[0.08em] text-muted uppercase whitespace-nowrap">Subtotal</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($transaksi->detailTransaksis as $detail)
                 <tr>
-                    <td>
+                    <td class="py-1 align-top">
                         {{ $detail->barang->nama_barang ?? '-' }}<br>
                         <span class="text-muted">{{ formatRupiah($detail->harga) }} × {{ $detail->jumlah }}</span>
                     </td>
-                    <td class="r">{{ formatRupiah($detail->subtotal) }}</td>
+                    <td class="py-1 text-right align-top whitespace-nowrap">{{ formatRupiah($detail->subtotal) }}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -57,13 +57,13 @@
 
     <div class="receipt-rule" role="presentation"></div>
 
-    <div class="receipt-total">
+    <div class="flex justify-between gap-3 text-base font-bold text-ink">
         <span>Total</span>
         <span>{{ formatRupiah($grandTotal) }}</span>
     </div>
 
     <div class="receipt-rule" role="presentation"></div>
 
-    <p class="receipt-foot">Terima kasih telah berbelanja di Toko RPL Jaya</p>
+    <p class="text-center text-xs text-muted">Terima kasih telah berbelanja di Toko RPL Jaya</p>
 </div>
 @endsection

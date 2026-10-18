@@ -51,7 +51,7 @@
                     <td>{{ $transaksi->tanggal->format('d-m-Y') }}</td>
                     <td class="col-num">{{ formatRupiah($transaksi->total) }}</td>
                     <td class="col-act">
-                        <a href="{{ route('transaksi.show', $transaksi->id) }}" class="btn btn-sm btn-outline">Detail</a>
+                        <a href="{{ route('transaksi.show', $transaksi->id) }}" class="btn btn-outline min-h-8 px-4 py-1 text-[0.8125rem]">Detail</a>
                     </td>
                 </tr> 
             @empty

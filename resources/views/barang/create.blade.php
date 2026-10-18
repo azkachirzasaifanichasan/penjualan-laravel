@@ -39,8 +39,8 @@
 
         <div>
             <label for="harga" class="label">Harga <span class="req" aria-hidden="true">*</span></label>
-            <div class="input-group">
-                <span class="input-addon">Rp</span>
+            <div class="group flex">
+                <span class="inline-flex items-center border border-e-0 border-rule bg-paper-2 px-4 text-sm whitespace-nowrap text-muted group-focus-within:border-focus">Rp</span>
                 <input type="number" name="harga" id="harga" value="{{ old('harga') }}"
                        class="input @error('harga') input-error @enderror" min="0" step="1"
                        required aria-required="true" inputmode="numeric"

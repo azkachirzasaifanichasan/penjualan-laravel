@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::middleware('superadmin')->group(function () {
         Route::resource('barang', BarangController::class);
     });
@@ -17,5 +17,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/transaksi/{id}', [TransaksiController::class, 'show'])->name('transaksi.show');
 });
 
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');

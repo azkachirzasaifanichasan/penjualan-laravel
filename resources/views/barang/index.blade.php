@@ -48,21 +48,21 @@
                     <td class="col-num">{{ formatRupiah($barang->harga) }}</td>
                     <td>
                         @if ($barang->stok <= 5)
-                            <span class="badge badge-warn">{{ $barang->stok }}</span>
+                            <span class="badge bg-warning-soft text-warning-ink">{{ $barang->stok }}</span>
                         @else
                             {{ $barang->stok }}
                         @endif
                     </td>
                     <td class="col-act">
-                        <div class="cell-actions">
-                            <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-sm btn-outline">Ubah</a>
+                        <div class="flex items-center gap-2">
+                            <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-outline min-h-8 px-4 py-1 text-[0.8125rem]">Ubah</a>
                             <form action="{{ route('barang.destroy', $barang->id) }}" method="POST"
                                   data-confirm-title="Hapus barang"
                                   data-confirm="Barang “{{ $barang->nama_barang }}” akan dihapus permanen dan tidak bisa dikembalikan."
                                   data-confirm-action="Ya, hapus">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                <button type="submit" class="btn border-danger/45 bg-transparent text-danger hover:bg-danger-soft min-h-8 px-4 py-1 text-[0.8125rem]">Hapus</button>
                             </form>
                         </div>
                     </td>

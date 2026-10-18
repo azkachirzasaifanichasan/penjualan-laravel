@@ -1,10 +1,10 @@
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="Navigasi halaman" class="pager">
-        <p class="pager-info">
+    <nav role="navigation" aria-label="Navigasi halaman" class="flex flex-wrap items-center justify-between gap-3 pt-4">
+        <p class="text-[0.8125rem] text-muted tabular-nums">
             Menampilkan {{ $paginator->firstItem() }}–{{ $paginator->lastItem() }} dari {{ $paginator->total() }} data
         </p>
 
-        <div class="pager-links">
+        <div class="flex flex-wrap gap-1">
             @if ($paginator->onFirstPage())
                 <span class="pager-btn is-disabled" aria-disabled="true" aria-label="Halaman sebelumnya">
                     <i class="bi bi-chevron-left" aria-hidden="true"></i>
