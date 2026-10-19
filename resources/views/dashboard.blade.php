@@ -14,9 +14,9 @@
 </header>
 
 <section class="mb-8 grid grid-cols-1 border-y border-rule md:grid-cols-3" aria-label="Statistik toko">
-    <div class="min-w-0 py-4 md:px-6 md:py-5 md:first:pl-0 md:last:pr-0 [&+&]:border-t [&+&]:border-rule md:[&+&]:border-t-0 md:[&+&]:border-l">
-        <p class="mb-1 text-[0.8125rem] font-medium text-muted">Total Penjualan</p>
-        <p class="font-display text-[2rem] leading-[1.1] font-semibold tracking-[-0.02em] text-accent-dark tabular-nums break-words" data-countup="{{ (int) $totalPenjualan }}" data-prefix="Rp ">{{ formatRupiah($totalPenjualan) }}</p>
+    <div class="min-w-0 bg-ink px-4 py-4 md:px-6 md:py-5 md:first:pl-0 md:last:pr-0 [&+&]:border-t [&+&]:border-rule md:[&+&]:border-t-0 md:[&+&]:border-l">
+        <p class="mb-1 text-[0.8125rem] font-medium text-sidebar-label">Total Penjualan</p>
+        <p class="font-display text-[2rem] leading-[1.1] font-semibold tracking-[-0.02em] text-accent-light tabular-nums break-words" data-countup="{{ (int) $totalPenjualan }}" data-prefix="Rp ">{{ formatRupiah($totalPenjualan) }}</p>
     </div>
     <div class="min-w-0 py-4 md:px-6 md:py-5 md:first:pl-0 md:last:pr-0 [&+&]:border-t [&+&]:border-rule md:[&+&]:border-t-0 md:[&+&]:border-l">
         <p class="mb-1 text-[0.8125rem] font-medium text-muted">Total Barang</p>

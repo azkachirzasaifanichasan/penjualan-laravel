@@ -30,11 +30,13 @@
                    @if (request()->routeIs('dashboard')) aria-current="page" @endif>
                     <i class="bi bi-speedometer2" aria-hidden="true"></i> Dashboard
                 </a>
+                @if (auth()->user()?->role === 'superadmin')
                 <a class="navlink {{ request()->routeIs('barang.*') ? 'active' : '' }}"
                    href="{{ route('barang.index') }}"
                    @if (request()->routeIs('barang.*')) aria-current="page" @endif>
                     <i class="bi bi-box-seam" aria-hidden="true"></i> Data Barang
                 </a>
+                @endif
                 <a class="navlink {{ request()->routeIs('transaksi.index') || request()->routeIs('transaksi.show') ? 'active' : '' }}"
                    href="{{ route('transaksi.index') }}"
                    @if (request()->routeIs('transaksi.index') || request()->routeIs('transaksi.show')) aria-current="page" @endif>

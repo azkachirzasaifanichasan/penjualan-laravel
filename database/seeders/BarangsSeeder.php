@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Barang;
 use Illuminate\Database\Seeder;
 
-class BarangSeeder extends Seeder
+class BarangsSeeder extends Seeder
 {
     public function run(): void
     {
