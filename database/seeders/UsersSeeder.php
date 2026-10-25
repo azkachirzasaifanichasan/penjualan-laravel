@@ -12,17 +12,17 @@ class UsersSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'superadmin@toko.test'],
             [
-                'name'     => 'Super Admin',
-                'password' => 'rahasia123',
+                'name'     => 'superadmin',
+                'password' => 'superadmin123',
                 'role'     => 'superadmin',
             ],
         );
 
         User::updateOrCreate(
-            ['email' => 'karyawan@toko.test'],
+            ['email' => 'admin@toko.test'],
             [
-                'name'     => 'Karyawan Toko',
-                'password' => 'rahasia123',
+                'name'     => 'admin',
+                'password' => 'admin123',
                 'role'     => 'karyawan',
             ],
         );

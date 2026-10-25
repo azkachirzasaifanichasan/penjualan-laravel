@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::middleware(Role::class.':superadmin')->group(function () {
-        Route::resource('barang', BarangController::class);
+        Route::resource('/barang', BarangController::class);
     });
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
     Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
